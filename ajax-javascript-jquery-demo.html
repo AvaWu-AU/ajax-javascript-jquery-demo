@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Practice to Use JS to Connect to API</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <style type="text/css">
+        :root {
+            --post-padding-box: 10px;
+        }
+
+        .body {
+            font-size: 13px;
+            font-family: 'Poppins';
+        }
+
+        .header-top {
+            background-image: url(https://github.com/AvaWu-AU/photos-for-en-cv/blob/main/AvaCVPhotos-3.jpg?raw=true );
+            min-width: 1024px;
+            min-height: 60%;
+            width: 100%;
+            height: auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-bottom: 50px;
+        }
+
+        .header-title-container {
+            /* background: #ffffff; */
+            opacity: 90%;
+            margin: 0 20%;
+            text-align: center;
+            padding: 220px;
+        }
+
+        .header-title {
+            opacity: 100%;
+            text-align: center;
+            padding: 20px 0px;
+            color: blue;
+            background: #ffffff;
+        }
+
+        .btn-introdu {
+            margin-bottom: 20px;
+        }
+
+        .modal-backdrop {
+            position: unset !important;
+        }
+
+        .first-section-container {
+
+            margin: 0 10%;
+        }
+
+        .wrapper {
+            height: 100%;
+        }
+
+        .post-body {
+            height: 6em;
+            overflow: scroll;
+        }
+
+        .second-post-title {
+            height: 3em;
+            overflow: scroll;
+        }
+
+        header,
+        footer {
+            display: block;
+        }
+
+        .section-one-post-box {
+            /* border: 1px solid gray; */
+            margin: 10px;
+            float: left;
+            width: 23%;
+            height: 120px;
+            background: #FC9094;
+            padding: var(--post-padding-box);
+            color: white;
+        }
+
+        .section-two-post-box {
+            margin: 10px;
+            float: left;
+            width: 23%;
+            height: 120px;
+            padding: var(--post-padding-box);
+        }
+
+        .section-one-post-box:hover {
+            color: blue;
+            filter: brightness(1.1);
+        }
+
+        .source-code-btn .button:hover {
+            filter: brightness(1.1);
+        }
+
+        header,
+        footer {
+            width: 100vw;
+            height: 100px;
+            border-bottom: solid 1px rgba(16, 16, 16, 0.1);
+            font-family: 'Poppins';
+        }
+
+        header .inner,
+        footer .inner {
+            width: 1300px;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        header .brand,
+        footer .brand {
+            display: table;
+            height: 100%;
+            float: left;
+        }
+
+        header .brand div,
+        footer .brand div {
+            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        header .brand img,
+        footer .brand img {
+            height: 50px;
+            margin-top: 5px;
+            /* Optical alignment of the logo */
+        }
+
+        header nav,
+        footer nav {
+            float: right;
+            height: 100%;
+        }
+
+        header nav li,
+        footer nav li {
+            display: table;
+            height: 100%;
+            float: left;
+            margin-right: 30px;
+        }
+
+        header nav li:last-of-type {
+            margin-right: 0;
+        }
+
+        header nav span,
+        footer nav span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        header nav a,
+        footer nav a {
+            color: #101010;
+        }
+
+        header nav .button,
+        .source-code-btn .button,
+        .click-data-btn .button,
+        footer nav .button {
+            background-color: #1ab26b;
+            /* This HEX is the color of the button */
+            color: #FFF;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        .source-code-btn,
+        .click-data-btn {
+            text-align: center;
+            margin: 20px;
+        }
+
+        header nav .button:hover {
+            filter: brightness(1.05);
+        }
+
+        footer nav .button:hover {
+            filter: brightness(1.05);
+        }
+
+        .section-header-title h2,
+        .section-intro-box {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .section-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-two-container {
+            padding: 20px 0;
+            background-color: gainsboro;
+        }
+
+        .second-section-container {
+            margin: 0 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="inner">
+            <div class="brand">
+                <div>
+                    <!-- <img /> -->
+                    <h1>Ava Codes</h1>
+                </div>
+            </div>
+            <nav>
+                <li><span><a href="">About Ava</a></span></li>
+                <li><span><a href="">Source Code</a></span></li>
+                <li><span><a href="" class="button" data-toggle="modal" data-target="#exampleModalLong">项目介绍</a></span>
+                </li>
+                <li><span><a href="" class="button" data-toggle="modal" data-target="#exampleModalLong">Project
+                            Introduction</a></span></li>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        <div class="header-top">
+            <div class="header-title-container">
+                <h1 class="header-title">
+                    Use JavaScript to Call API <br><br> 使用JavaScript 连接API的方法
+                </h1>
+                <!-- <button type="button" class="btn-primary btn-sm btn-introdu" data-toggle="modal"
+                    data-target="#exampleModalLong">Click to view Project Introduction.<br><br>点击了解项目介绍</button> -->
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLongTitle">Project Introduction<br />项目介绍</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="text-align: left;">
+                                <p>In this project Demo, we try to fetch data from API calls via JavaScript ajax
+                                    method and jQuery ajax method. Main technologies used here including HTML, CSS3,
+                                    JavaScript, jQuery and Bootstrap. If you feel interested in the source code, welcome
+                                    to click "Source Code" in the menu to view.</p>
+                                <p>在这个小Demo中，我们使用了JavaScript原生的ajax以及jQuery的ajax方法来获取免费API数据，并在前端展示出来。使用到的技术包括：HTML,
+                                    CSS3, JavaScript, jQuery 和 Bootstrap。如果你对Demo源代码感兴趣，欢迎点击"Source Code“查看。</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Modal  -->
+            </div>
+        </div>
+    </div>
+
+
+    <!--    First Section -->
+    <div class="section-container">
+        <div class="section-header-title">
+            <h2> Method One: XMLHttpequest <br />方法一: 使用XMLHttpequest</h2>
+        </div>
+        <div class="section-intro-box"><span> When this project uses XMLHttprequest Method to call data from free json
+                API, only 8 pieces of data were shown here.</span><br /><span>当使用该方法获取数据的时候，仅显示8条数据。</span></div>
+        <div class="first-section-container" id="first-section-container">
+        </div>
+        <div class="source-code-btn"><span><a href="" class="button">Click to View Source Code 点击查看源代码</a></span></div>
+    </div>
+
+    <!--   End of First Section -->
+
+    <!--    Second Section -->
+    <div class="section-container section-two-container">
+        <div class="section-header-title">
+            <h2> Method Two: jQuery Ajax <br />方法二: 使用jQuery 的Ajax方法</h2>
+        </div>
+        <div class="section-intro-box"><span> When this project uses Ajax to call data from free json
+                API, only 8 pieces of data were shown here. Welcome to click and play with the
+                data.</span><br /><span>当使用该方法获取数据的时候，仅显示8条数据。欢迎点击按钮获取数据。</span></div>
+        <div class="click-data-btn" id="click-data-btn"><span><a href="" class="button"><strong>Click to Show Data
+                        点击获取API数据</strong></a></span></div>
+        <div class="second-section-container" id="second-section-container">
+        </div>
+    </div>
+
+    <!--   End of Second Section -->
+
+    <footer>
+        <div class="inner">
+            <div class="brand">
+                <div>
+                    <!-- <img /> -->
+                    <h1>Thank You!</h1>
+                </div>
+            </div>
+            <nav>
+                <li><span>&#169 Ava</span></li>
+                <li><span><a href="">Source Code</a></span></li>
+                <li><span><a href="" class="button" data-toggle="modal" data-target="#exampleModalLong">项目介绍</a></span>
+                </li>
+                <li><span><a href="" class="button" data-toggle="modal" data-target="#exampleModalLong">Project
+                            Introduction</a></span></li>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+        </script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+
+    <script>
+        //    following function uses XMLHttpequest to call api
+
+        function xmlHttprequestCall() {
+            let request = new XMLHttpRequest();
+            let apiUrl = "https://jsonplaceholder.typicode.com/posts"
+            request.open("GET", apiUrl, true);
+            request.send();
+            let postDiv = document.getElementById('first-section-container');
+            request.onload = () => {
+
+                if (request.status == 200) {
+
+                    const postData = JSON.parse(request.response);
+
+                    if (postData.length < 8) {
+                        for (let k = 0; k < postData.length; k++) {
+                            let title = postData[k].title;
+                            let postBody = postData[k].body;
+                            let postBox =
+                                `<div class="section-one-post-box">
+                                <div class="post-title"><strong> ${title} </strong></div>
+                                <div class="post-body"> ${postBody} </div>
+                              </div>`;
+                            postDiv.innerHTML += postBox;
+                        }
+                    } else {
+                        for (let k = 0; k < 8; k++) {
+                            let title = postData[k].title;
+                            let postBody = postData[k].body;
+                            let postBox =
+                                `<div class="section-one-post-box">
+                                <div class="post-title"><strong> ${title} </strong></div>
+                                <div class="post-body"> ${postBody} </div>
+                              </div>`;
+                            postDiv.innerHTML += postBox;
+                        }
+                    }
+
+                } else {
+                    console.log(`error ${request.status} ${request.statusText}`)
+                }
+
+            }
+        }
+
+        $(document).ready(function () {
+            $(".click-data-btn").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "https://jsonplaceholder.typicode.com/photos",
+                    dataType: "json",
+                    success: function (result) {
+                        let postDiv = $(".second-section-container");
+                        if (result.length < 8) {
+                            for (let k = 0; k < result.length; k++) {
+                                let title = result[k].title;
+                                let photo = result[k].url;
+                                let postBox =
+                                    `<div class="section-two-post-box">
+                                <div class=""><strong> ${title} </strong></div>
+                                <div class="post-body"> <img src = "${photo} " /></div>
+                              </div>`;
+                                postDiv.append(postBox);
+                            }
+                        } else {
+
+                            for (let k = 0; k < 8; k++) {
+                                let title = result[k].title;
+                                let photo = result[k].url;
+                                let postBox =
+                                    `<div class="section-two-post-box">
+                                <div class="second-post-title"><strong> ${title} </strong></div>
+                                <div class="post-body"> <img src = "${photo}" /></div>
+                              </div>`;
+                                postDiv.append(postBox);
+                            }
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+
+        window.onload = xmlHttprequestCall();
+    </script>
+</body>
+
+</html>
